@@ -1,0 +1,112 @@
+{
+    "$schema": "https://raw.githubusercontent.com/F5Networks/f5-appsvcs-extension/master/schema/latest/as3-schema.json",
+    "class": "AS3",
+    "action": "deploy",
+    "persist": true,
+ "declaration": {
+   "class": "ADC",
+   "schemaVersion": "3.0.0",
+   "id": "example-declaration-01",
+   "label": "Example 1",
+   "remark": "Simple HTTP application with RR pool",
+   "matt_bennett": {
+     "class": "Tenant",
+     "biztalk_and_Outlook": {
+       "class": "Application",
+       "template": "generic",
+       "biztalk_http_vs1": {
+         "class": "Service_HTTP",
+         "virtualAddresses": [
+           "10.1.5.10"
+         ],
+         "pool": "biztalk_http_pool1"
+       },
+       "biztalk_http_pool1": {
+         "class": "Pool",
+         "monitors": [
+           "http"
+         ],
+         "members": [
+           {
+             "servicePort": 80,
+             "serverAddresses": [
+               "10.1.5.50",
+               "10.1.5.51"
+             ]
+           }
+         ]
+       },
+       "outlook_http_pool1": {
+         "class": "Pool",
+         "monitors": [
+           "http"
+         ],
+         "members": [
+           {
+             "servicePort": 80,
+             "serverAddresses": [
+               "10.1.5.60",
+               "10.1.5.61"
+             ]
+           }
+         ]
+       },
+       "outlook_http_vs1": {
+         "class": "Service_HTTP",
+         "virtualAddresses": [
+           "10.1.5.11"
+         ],
+         "pool": "outlook_http_pool1"
+       }
+     },
+         "Texas_Peace": {
+       "class": "Application",
+       "template": "generic",
+       "texas_http_vs1": {
+         "class": "Service_HTTP",
+         "virtualAddresses": [
+           "10.1.5.20"
+         ],
+         "pool": "texas2_http_pool1"
+       },
+       "texas2_http_pool1": {
+         "class": "Pool",
+         "monitors": [
+           "http"
+         ],
+         "members": [
+           {
+             "servicePort": 80,
+             "serverAddresses": [
+               "10.1.5.105",
+               "10.1.5.106"
+             ]
+           }
+         ]
+       },
+       "peacetexas2_http_pool1": {
+         "class": "Pool",
+         "monitors": [
+           "http"
+         ],
+         "members": [
+           {
+             "servicePort": 80,
+             "serverAddresses": [
+               "10.1.5.201",
+               "10.1.5.202"
+             ]
+           }
+         ]
+       },
+       "peacetexas2_http_vs1": {
+         "class": "Service_HTTP",
+         "virtualAddresses": [
+           "10.1.5.21"
+         ],
+         "pool": "peacetexas2_http_pool1"
+       }
+     }  
+    }
+   }
+ }
